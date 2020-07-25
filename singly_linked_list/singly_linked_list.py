@@ -5,17 +5,17 @@ class Node:
         self.value = value
         self.next_node = next_node
 
-        # return the value of the current node
-        def get_value(self):
-            return self.value
+    # return the value of the current node
+    def get_value(self):
+        return self.value
 
-        # return the value of the next node
-        def get_next(self):
-            return self.next_node
+    # return the value of the next node
+    def get_next(self):
+        return self.next_node
 
-        # set the value of the next node using `new_next`
-        def set_next(self, new_next):
-            self.next_node = new_next
+    # set the value of the next node using `new_next`
+    def set_next(self, new_next):
+        self.next_node = new_next
 
 # the linked list itself only keeps track of the head and tail node
 
@@ -41,12 +41,23 @@ class LinkedList:
             # update the linkedlist `tail` to point to our new node
             self.tail = new_node
 
+    # def add_to_head(self, value):
+    #     # create node from input
+    #     new_node = Node(value)
+
+    #     if not self.head and not self.tail:
+    #         self.head = new_node
+    #         self.tail = new_node
+    #     else:
+    #         new_node.set_next(self.head)
+    #         self.head = new_node
+
     def remove_head(self):
         # if there is no element in the list
         if not self.head:
             return None
         # if head has no next (aka one element in the list)
-        if not self.head.get_next:
+        if not self.head.get_next():
             # get reference to the head of the list
             head = self.head
             # remove the previous head
@@ -61,3 +72,30 @@ class LinkedList:
         self.head = self.head.get_next()
         # return value
         return value
+
+    def contains(self, value):
+        if not self.head:
+            return False
+
+        # get a reference to the node we're currently at. update this as we traverse the linkedlist
+        current = self.head
+        #
+        while current:
+            # return true if the current value we're looking at matches our target value
+            if current.get_value() == value:
+                return True
+            # update our current node to the current node's next node
+            current = current.get_next()
+        # if we've gotten here, then the target node isn't in our list
+        return False
+
+    def get_max(self):
+        if not self.head:
+            return None
+        current = self.head
+        max_val = self.head.value
+        while current:
+            if current.value > max_val:
+                max_val = current.value
+            current = current.next_node
+        return max_val
