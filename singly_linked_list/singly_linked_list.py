@@ -41,16 +41,21 @@ class LinkedList:
             # update the linkedlist `tail` to point to our new node
             self.tail = new_node
 
-    # def add_to_head(self, value):
-    #     # create node from input
-    #     new_node = Node(value)
-
-    #     if not self.head and not self.tail:
-    #         self.head = new_node
-    #         self.tail = new_node
-    #     else:
-    #         new_node.set_next(self.head)
-    #         self.head = new_node
+    def add_to_head(self, value):
+        # create node from input
+        new_node = Node(value)
+        # if the list is empty
+        if not self.head and not self.tail:
+            # then set head and tail to this new node
+            self.head = new_node
+            self.tail = new_node
+        # if list is not empty
+        else:
+            # set new node's next reference to the current headadd's to the top of the list
+            # AKA add node to top of list
+            new_node.set_next(self.head)
+            # set the new head of the list to the new node
+            self.head = new_node
 
     def remove_head(self):
         # if there is no element in the list
